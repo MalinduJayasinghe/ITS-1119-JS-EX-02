@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+
+  <style>
+
+    section {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 260px;
+      height: auto;
+      background: gray;
+      border: 5px solid black;
+      padding: 16px;
+      gap: 10px;
+      border-radius: 12px;
+    }
+
+    .top-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      height: 60px;
+      background: black;
+      border: 2px solid #555;
+      border-radius: 6px;
+      box-sizing: border-box;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 0 12px;
+      text-align: right;
+    }
+
+    .button-grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    button.btn {
+      width: 100%;
+      aspect-ratio: 1;
+      background: lightgray;
+      border: 2px solid black;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button.btn-black {
+      width: 100%;
+      aspect-ratio: 1;
+      background: black;
+      color: white;
+      border: 2px solid gray;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button.btn-red {
+      height: 60px;
+      width: 60px;
+      background: red;
+      color: white;
+      border: 2px solid black;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 20px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    button.btn:hover {
+      border: 2px solid deepskyblue;
+    }
+
+    button.btn-black:hover {
+      border: 2px solid deepskyblue;
+    }
+
+    button.btn-red:hover {
+      border: 2px solid deepskyblue;
+    }
+
+    button.btn:active {
+      background: #a8a7a7;
+    }
+
+    button.btn-black:active {
+      background: #434242;
+    }
+
+    button.btn-red:active {
+      background: #780404;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<section>
+
+  <div class="top-row">
+    <button class="btn-red" onclick="clearDisplay()">C</button>
+    <input id = "display" readonly>
+  </div>
+
+  <div class="button-grid">
+    <button class="btn" onclick = "displayValue(1)">1</button>
+    <button class="btn" onclick = "displayValue(2)">2</button>
+    <button class="btn" onclick = "displayValue(3)">3</button>
+    <button class="btn-black" onclick = "displayValue('+')">+</button>
+
+    <button class="btn" onclick = "displayValue(4)">4</button>
+    <button class="btn" onclick = "displayValue(5)">5</button>
+    <button class="btn" onclick = "displayValue(6)">6</button>
+    <button class="btn-black" onclick = "displayValue('-')">-</button>
+
+    <button class="btn" onclick = "displayValue(7)">7</button>
+    <button class="btn" onclick = "displayValue(8)">8</button>
+    <button class="btn" onclick = "displayValue(9)">9</button>
+    <button class="btn-black" onclick = "displayValue('*')">x</button>
+
+    <button class="btn-black" onclick = "displayValue('.')">.</button>
+    <button class="btn" onclick = "displayValue(0)">0</button>
+    <button class="btn-black" onclick= "calculate()" >=</button>
+    <button class="btn-black" onclick = "displayValue('/')">÷</button>
+  </div>
+
+</section>
+
+<script>
+  const display = document.getElementById('display');
+
+  function displayValue(input){
+
+    display.value += input;
+  }
+
+  function clearDisplay() {
+
+    display.value = '';
+  }
+
+  function calculate() {
+
+    try {
+      display.value = eval(display.value);
+    } catch(error) {
+      display.value = 'Error';
+      setTimeout(() => {
+        display.value = '';
+      }, 1000);
+    }
+  }
+</script>
+
+</body>
+</html>
